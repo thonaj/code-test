@@ -29,12 +29,12 @@ namespace Code_test.Logic
 
       public decimal calculateTax(WidgetDTO itm, decimal taxRate, int quanity, decimal discount)
       {
-         return ((itm.Base_Price - discount) * quanity) * taxRate;
+         return decimal.Round((((itm.Base_Price - discount) * quanity) * taxRate),2);
       }
 
       public decimal calculateTotal(WidgetDTO itm, decimal discount, decimal tax, int quantity)
       {
-         return ((itm.Base_Price - discount) * quantity) + tax;
+         return decimal.Round((((itm.Base_Price - discount) * quantity) + tax),2);
       }
 
     }

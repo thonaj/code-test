@@ -13,5 +13,9 @@ namespace Code_test.Logic
       bool insertWidgetDTO(WidgetDTO widget);
       bool deleteWidgetDAO(WidgetDTO widget);
       bool updateWidgetDAO(WidgetDTO widget);
+      decimal calculateDiscount(WidgetDTO itm);
+      decimal getTaxRate(WidgetDTO itm, string state);
+      decimal calculateTax(WidgetDTO itm, decimal taxRate, int quanity, decimal discount);
+      decimal calculateTotal(WidgetDTO itm, decimal discount, decimal tax, int quantity);
    }
 }

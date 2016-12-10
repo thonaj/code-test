@@ -50,7 +50,11 @@ namespace Code_test.Client.Controllers
       public ActionResult Details(string id)
       {
          testModel = TempData["model"] as Code_testModel;
-         return View();
+         testModel.TaxRate = appLogic.getTaxRate(testModel.MyWidget, testModel.State);
+         testModel.Discount = appLogic.calculateDiscount(testModel.MyWidget);
+         testModel.Tax = appLogic.calculateTax(testModel.MyWidget, testModel.TaxRate, testModel.Quantity, testModel.Discount);
+         testModel.Total = appLogic.calculateTotal(testModel.MyWidget, testModel.Discount, testModel.Tax, testModel.Quantity);
+         return View(testModel);
       }
 
       // GET: Widget/Create
