@@ -6,3 +6,64 @@
 
 <h2>Details</h2>
 
+
+<table class="table-striped">
+   <tr>
+      <th class="col-sm-1">
+         @Html.Label("Widget")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("Widget Price")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("Has Discount")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("State")
+      </th>      
+      <th class="col-sm-1">
+         @Html.Label("Quantity")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("Tax Rate")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("Tax")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("Discount/Each")
+      </th>
+      <th class="col-sm-1">
+         @Html.Label("Total")
+      </th>
+   </tr>
+   <tr>
+      <td class="col-sm-1">
+         @Html.DisplayFor(m => m.MyWidget.Name)
+      </td>
+      <td class="col-sm-1">
+         $@Html.DisplayFor(m => m.MyWidget.Base_Price)
+      </td>
+      <td class="col-sm-1">
+         @Html.DisplayFor(m => m.MyWidget.Discount_Indicator)
+      </td>
+      <td class="col-sm-1">
+         @Html.DisplayFor(m => m.State)
+      </td>
+      <td class="col-sm-1">
+         @Html.DisplayFor(m => m.Quantity)
+      </td>
+      <td class="col-sm-1">
+         @Html.DisplayFor(m => m.TaxRate)%
+      </td>
+      <td class="col-sm-1">
+         $@Html.DisplayFor(m => m.Tax)
+      </td>
+      <td class="col-sm-1">
+         @Html.DisplayFor(m => m.Discount)%
+      </td>
+      <td class="col-sm-1">
+         $@Html.DisplayFor(m => m.Total)
+      </td>
+   </tr>
+</table>
