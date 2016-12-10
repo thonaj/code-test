@@ -7,9 +7,27 @@
 <h2>Code Test</h2>
 @using (Html.BeginForm("Index", "Widget", FormMethod.Post))
 {
-   <div>
+   <div class="form-group">
       @Html.DropDownListFor(m => m.SelectedWidget, Model.MySelections, new { @class = "btn btn-default dropdown-toggle" })
       <button type="submit" class="btn btn-primary" style="margin-left:2%"> Select This Widget</button>
+      @Html.ValidationMessageFor(m => m.SelectedWidget)
+
+
+   </div>
+   <div class="form-group">
+      @Html.LabelFor(m => m.Quantity, Model.Quantity)
+      @Html.TextBoxFor(m => m.Quantity, Model.Quantity)
+      @Html.ValidationMessageFor(m => m.Quantity)
+
+
+   </div>
+   <div class="form-group">
+      @Html.LabelFor(m => m.State, Model.State)
+      @Html.TextBoxFor(m => m.State, Model.State)
+      @Html.ValidationMessageFor(m => m.State,"", new { @class = "text-danger" })
+
+
+
    </div>
   
    

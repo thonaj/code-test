@@ -24,13 +24,26 @@ namespace Code_test.Client.Controllers
       }
 
       [HttpPost]
-      public RedirectToRouteResult Index(Code_testModel model)
+      public ActionResult Index(Code_testModel model)
       {
          testModel = TempData["model"] as Code_testModel;
+         testModel.Quantity = model.Quantity;
+         testModel.State = model.State;
          testModel.SelectedWidget = model.SelectedWidget;
          testModel.MyWidget = appLogic.getWidgetDTOs().Where(m => m.Name.Equals(testModel.SelectedWidget)).FirstOrDefault();
-         TempData["model"] = testModel;
-         return RedirectToAction(string.Format("Details/{0}",testModel.MyWidget.Name));
+            
+         if (ModelState.IsValid)
+         {
+            TempData["model"] = testModel;
+            return RedirectToAction(string.Format("Details/{0}", testModel.MyWidget.Name));
+         }
+         else
+         {
+            TempData["model"] = testModel;
+            return View(testModel);
+         }
+            
+         
 
       }
       // GET: Widget/Details/Name
