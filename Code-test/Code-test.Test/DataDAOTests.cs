@@ -11,7 +11,7 @@ namespace Code_test.Test
 {
    public class DataDAOTests
    {
-      private DataAccess da = new DataAccess();
+      private DataAccess da = new DataAccess(new EF());
 
       [Fact]
       public void testinsertWidgetDAO()

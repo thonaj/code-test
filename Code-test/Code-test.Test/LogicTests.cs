@@ -1,4 +1,5 @@
-﻿using Code_test.Data.Models;
+﻿using Code_test.Data;
+using Code_test.Data.Models;
 using Code_test.Logic;
 using Code_test.Logic.Models;
 using System;
@@ -11,14 +12,15 @@ namespace Code_test.Test
 {
    public class LogicTests
    {
-      private appLogic al = new appLogic();
+      private iAppLogic al = new appLogic(new DataAccess(new EF()));
+      
       [Fact]
       public void testinsertWidgetDTO()
-      {
+      {         
          var widget = new WidgetDTO();
-         widget.Name = "test";
-         widget.Base_Price = 1.99m;
-         widget.Discount_Indicator = false;
+         widget.Name = "test3";
+         widget.Base_Price = 3.99m;
+         widget.Discount_Indicator = true;
          var result = al.insertWidgetDTO(widget);
          Assert.True(result);
       }

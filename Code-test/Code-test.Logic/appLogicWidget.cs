@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace Code_test.Logic
 {
-   public partial class appLogic
+   public partial class appLogic:iAppLogic
    {
-      private DataAccess da = new DataAccess();
+      public iDataAccess da;
+      public appLogic(iDataAccess iDa)
+      {
+         da = iDa;
+      }
+
       public List<WidgetDTO> getWidgetDTOs()
       {
         

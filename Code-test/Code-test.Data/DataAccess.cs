@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace Code_test.Data
 {
-   public class DataAccess
+   public class DataAccess:iDataAccess
    {
-      private EF ef = new EF();
+      private iEF ef ;
+      
+      public DataAccess(iEF efType)
+      {
+         ef = efType;
+      }
       public List<WidgetDAO> getWidgetDAOs()
       {
          var list = new List<WidgetDAO>();

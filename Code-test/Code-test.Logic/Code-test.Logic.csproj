@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="appLogic.cs" />
     <Compile Include="appLogicWidget.cs" />
+    <Compile Include="iAppLogic.cs" />
     <Compile Include="Mapper\WidgetMapper.cs" />
     <Compile Include="Models\WidgetDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

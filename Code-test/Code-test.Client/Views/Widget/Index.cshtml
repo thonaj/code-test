@@ -1,0 +1,14 @@
+﻿@model Code_test.Client.Models.Code_testModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "Widget", FormMethod.Post))
+{
+   @Html.DropDownListFor(m => m.SelectedWidget, Model.MySelections, new { @class = "btn btn-default dropdown-toggle" })
+
+
+}
+

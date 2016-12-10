@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Code_test.Logic
 {
-    public partial class appLogic
+    public partial class appLogic:iAppLogic
     {
       public decimal calculateDiscount(WidgetDTO itm)
       {

@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="EF.cs" />
+    <Compile Include="iDataAccess.cs" />
+    <Compile Include="iEF.cs" />
     <Compile Include="Mapper\WidgetMapper.cs" />
     <Compile Include="Models\WidgetDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

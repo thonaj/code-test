@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Code_test.Data
 {
-    public class EF
+    public class EF:iEF
     {
+      
       private Entities ef = new Entities();
 
       public List<Widget> getWidgets()
