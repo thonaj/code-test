@@ -13,18 +13,30 @@ namespace Code_test.Client.Controllers
     public class WidgetController : Controller
     {
       private iAppLogic appLogic = new appLogic(new DataAccess(new EF()));
-      private Code_testModel model= new Code_testModel();
+      private Code_testModel testModel= new Code_testModel();
 
       // GET: Widget
       public ActionResult Index()
       {
-         model.MySelections = makeWidgetList(appLogic.getWidgetDTOs());
-         return View(model);
+         testModel.MySelections = makeWidgetList(appLogic.getWidgetDTOs());
+         TempData["model"] = testModel;
+         return View(testModel);
       }
 
-      // GET: Widget/Details/5
-      public ActionResult Details(int id)
+      [HttpPost]
+      public RedirectToRouteResult Index(Code_testModel model)
       {
+         testModel = TempData["model"] as Code_testModel;
+         testModel.SelectedWidget = model.SelectedWidget;
+         testModel.MyWidget = appLogic.getWidgetDTOs().Where(m => m.Name.Equals(testModel.SelectedWidget)).FirstOrDefault();
+         TempData["model"] = testModel;
+         return RedirectToAction(string.Format("Details/{0}",testModel.MyWidget.Name));
+
+      }
+      // GET: Widget/Details/Name
+      public ActionResult Details(string id)
+      {
+         testModel = TempData["model"] as Code_testModel;
          return View();
       }
 
@@ -97,10 +109,11 @@ namespace Code_test.Client.Controllers
       public List<SelectListItem> makeWidgetList(List<WidgetDTO> result)
       {
          var list = new List<SelectListItem>();
+         list.Add(new SelectListItem() { Text = "Please Select A Widget", Value = "notSelected" });
          foreach (var item in result)
          {
             var itm = new SelectListItem();
-            itm.Text = item.Name;
+            itm.Text = item.Name.ToUpper();
             itm.Value = item.Name;            
             list.Add(itm);
          }

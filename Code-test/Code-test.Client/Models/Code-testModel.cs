@@ -9,12 +9,8 @@ namespace Code_test.Client.Models
 {
    public class Code_testModel
    {
-      public Code_testModel()
-      {
-         MyWidgets = new List<WidgetDTO>();
-         
-      }
-      public List<WidgetDTO> MyWidgets { get; set; }
+      
+      public WidgetDTO MyWidget { get; set; }
       public List<SelectListItem> MySelections { get; set; }
       public string SelectedWidget { get; set; }
       public int Quantity { get; set; }

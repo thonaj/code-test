@@ -4,11 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Code Test</h2>
 @using (Html.BeginForm("Index", "Widget", FormMethod.Post))
 {
-   @Html.DropDownListFor(m => m.SelectedWidget, Model.MySelections, new { @class = "btn btn-default dropdown-toggle" })
-
+   <div>
+      @Html.DropDownListFor(m => m.SelectedWidget, Model.MySelections, new { @class = "btn btn-default dropdown-toggle" })
+      <button type="submit" class="btn btn-primary" style="margin-left:2%"> Select This Widget</button>
+   </div>
+  
+   
 
 }
 
