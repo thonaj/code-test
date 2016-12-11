@@ -8,8 +8,7 @@
 @using (Html.BeginForm("Index", "Widget", FormMethod.Post))
 {
    <div class="form-group">
-      @Html.DropDownListFor(m => m.SelectedWidget, Model.MySelections, new { @class = "btn btn-default dropdown-toggle" })
-      <button type="submit" class="btn btn-primary" style="margin-left:2%"> Select This Widget</button>
+      @Html.DropDownListFor(m => m.SelectedWidget, Model.MySelections, new { @class = "btn btn-default dropdown-toggle" })     
       @Html.ValidationMessageFor(m => m.SelectedWidget)
 
 
@@ -29,8 +28,8 @@
 
 
    </div>
-  
-   
+   <button type="submit" class="btn btn-primary" style="margin-top:5%"> Select This Widget</button>
+
 
 }
 

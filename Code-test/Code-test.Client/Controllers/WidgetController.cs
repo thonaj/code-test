@@ -35,6 +35,10 @@ namespace Code_test.Client.Controllers
       [HttpPost]
       public ActionResult Index(Code_testModel model)
       {
+         if(testModel==null)
+         {
+            testModel = new Code_testModel();
+         }
          testModel = TempData["model"] as Code_testModel;
          testModel.Quantity = model.Quantity;
          testModel.State = model.State;
