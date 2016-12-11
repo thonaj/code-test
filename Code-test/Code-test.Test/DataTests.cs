@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Code_test.Data.Models;
 using Code_test.Data;
+using Moq;
 
 namespace Code_test.Test
 {
@@ -46,7 +47,8 @@ namespace Code_test.Test
 
       [Fact]
       public void testGetWidgets()
-      {         
+      {
+                  
          var result = da.getWidgets();
          Assert.NotEmpty(result);
       }

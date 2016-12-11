@@ -12,7 +12,16 @@ namespace Code_test.Client.Controllers
 {
     public class WidgetController : Controller
     {
-      private iAppLogic appLogic = new appLogic(new DataAccess(new EF()));
+      private iAppLogic appLogic;
+      public WidgetController()
+      {
+         appLogic=new appLogic(new DataAccess(new EF()));
+      }
+      public WidgetController(iAppLogic iAL)
+      {
+         appLogic = iAL;
+      }
+      
       private Code_testModel testModel= new Code_testModel();
 
       // GET: Widget

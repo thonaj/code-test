@@ -6,49 +6,106 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Moq;
 
 namespace Code_test.Test
 {
    public class DataDAOTests
    {
-      private DataAccess da = new DataAccess(new EF());
+      [Fact]
+      public void insertWidgetDAO_validWidget_returnsTrue()
+      {
+         //arrange
+         var mockEF = new Mock<iEF>();
+
+         mockEF.Setup(m => m.insertWidget(It.IsAny<Widget>())).Returns(true);
+         var classToBeTested = new DataAccess(mockEF.Object);
+
+         //act
+         var result = classToBeTested.insertWidgetDAO(new WidgetDAO());
+
+         //assert
+         Assert.True(result);        
+      }
+      [Fact]
+      public void insertWidgetDAO_invalidWidget_returnsfalse()
+      {
+         //arrange
+         var mockEF = new Mock<iEF>();
+
+         mockEF.Setup(m => m.insertWidget(It.IsAny<Widget>())).Returns(false);
+         var classToBeTested = new DataAccess(mockEF.Object);
+
+         //act
+         var result = classToBeTested.insertWidgetDAO(new WidgetDAO());
+
+         //assert
+         Assert.False(result);
+      }
 
       [Fact]
-      public void testinsertWidgetDAO()
+      public void insertWidgetDAO_calledOnce_true()
       {
-         var widget = new WidgetDAO();
-         widget.Name = "test";
-         widget.Base_Price = 1.99m;
-         widget.Discount_Indicator = false;
-         var result = da.insertWidgetDAO(widget);
-         Assert.True(result);
+         //arrange
+         var mockEF = new Mock<iEF>();
+
+         mockEF.Setup(m => m.insertWidget(It.IsAny<Widget>())).Returns(true);
+         var classToBeTested = new DataAccess(mockEF.Object);
+
+         //act
+         var result = classToBeTested.insertWidgetDAO(new WidgetDAO());
+
+         //assert
+         mockEF.Verify(m => m.insertWidget(It.IsAny<Widget>()), Times.Once);
       }
       [Fact]
       public void testupdateWidgetDAO()
       {
-         var widget = new WidgetDAO();
-         widget.Name = "test";
+         //arrange
+         var mockEF = new Mock<iEF>();
 
-         var actual = da.getWidgetDAOs().Where(m => m.Name.Equals(widget.Name)).FirstOrDefault();
-         actual.Base_Price = 10.99m;
-         var result = da.updateWidgetDAO(actual);
+         mockEF.Setup(m => m.updateWidget(It.IsAny<Widget>())).Returns(true);
+         var classToBeTested = new DataAccess(mockEF.Object);
+
+         //act
+         var result = classToBeTested.updateWidgetDAO(new WidgetDAO());
+
+         //assert
          Assert.True(result);
       }
 
       [Fact]
       public void testdeleteWidgetDAO()
       {
-         var widget = new Widget();
-         widget.Name = "test";
-         var actual = da.getWidgetDAOs().Where(m => m.Name.Equals(widget.Name)).FirstOrDefault();
-         var result = da.deleteWidgetDAO(actual);
+         //arrange
+         var mockEF = new Mock<iEF>();
+        
+         mockEF.Setup(m => m.deleteWidget(It.IsAny<Widget>())).Returns(true);
+         var classToBeTested = new DataAccess(mockEF.Object);
+
+         //act
+         var result = classToBeTested.deleteWidgetDAO(new WidgetDAO());
+
+         //assert
          Assert.True(result);
+
+        
       }
 
       [Fact]
       public void testGetWidgetDAOs()
       {
-         var result = da.getWidgetDAOs();
+         //arrange
+         var mockEF = new Mock<iEF>();
+         List<Widget> list = new List<Widget>();
+         list.Add(new Widget { Base_Price = 1.99m, Discount_Indicator = false, Name = "mock widget", Id = 33 });
+         mockEF.Setup(m => m.getWidgets()).Returns(list);
+         var classToBeTested = new DataAccess(mockEF.Object);
+
+         //act
+         var result = classToBeTested.getWidgetDAOs();
+
+         //assert
          Assert.NotEmpty(result);
       }
    }
